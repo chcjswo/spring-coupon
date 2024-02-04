@@ -1,13 +1,13 @@
-package me.mocadev.springcoupon;
+package me.mocadev.couponapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SpringCouponApplication {
+public class CouponApiApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringCouponApplication.class, args);
+		SpringApplication.run(CouponApiApplication.class, args);
 	}
 
 }

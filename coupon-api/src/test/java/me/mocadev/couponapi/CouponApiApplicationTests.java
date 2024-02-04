@@ -1,10 +1,10 @@
-package me.mocadev.springcoupon;
+package me.mocadev.couponapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringCouponApplicationTests {
+class CouponApiApplicationTests {
 
 	@Test
 	void contextLoads() {

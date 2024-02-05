@@ -49,4 +49,26 @@ public class Coupon extends BaseTimeEntity {
 
 	@Column(nullable = false)
 	private LocalDateTime dateIssueEnd;
+
+	public boolean availableIssueQuantity() {
+		if (this.totalQuantity == null) {
+			return true;
+		}
+		return this.totalQuantity > this.issuedQuantity;
+	}
+
+	public boolean availableIssueDate() {
+		LocalDateTime now = LocalDateTime.now();
+		return this.dateIssueStart.isBefore(now) && this.dateIssueEnd.isAfter(now);
+	}
+
+	public void issue() {
+		if (!availableIssueQuantity()) {
+			throw new RuntimeException("수량 검증 실패");
+		}
+		if (!availableIssueDate()) {
+			throw new RuntimeException("기한 검증 실패");
+		}
+		this.issuedQuantity++;
+	}
 }

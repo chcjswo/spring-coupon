@@ -133,8 +133,8 @@ class CouponTest {
 
 		// when & then
 		assertThatThrownBy(coupon::issue)
-		    .isInstanceOf(RuntimeException.class)
-			.hasMessageContaining("실패")
+		    .isInstanceOf(CouponIssueException.class)
+			.hasMessageContaining(ErrorCode.INVALID_COUPON_ISSUE_QUANTITY.name())
 		;
 	}
 

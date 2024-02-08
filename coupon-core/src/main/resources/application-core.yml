@@ -9,8 +9,8 @@ spring:
             maximum-pool-size: 10
             max-lifetime: 30000
             connection-timeout: 3000
-            username: abcd
-            password: 1234
+            username: root
+            password: 1111
     jpa:
         hibernate:
             ddl-auto: none

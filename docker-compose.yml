@@ -19,7 +19,7 @@ services:
             - MYSQL_DATABASE=coupon
             - MYSQL_USER=abcd
             - MYSQL_PASSWORD=1234
-            - MYSQL_ROOT_PASSWORD=1234
+            - MYSQL_ROOT_PASSWORD=1111
             - TZ=UTC
         volumes:
             - ./mysql/init:/docker-entrypoint-initdb.d

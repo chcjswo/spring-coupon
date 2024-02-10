@@ -14,16 +14,10 @@ import me.mocadev.couponcore.component.DistributeLockExecutor;
 public class CouponIssueController {
 
 	private final CouponIssueRequestService couponIssueRequestService;
-	private final DistributeLockExecutor distributeLockExecutor;
 
 	@PostMapping("/v1/issue")
 	public CouponIssueResponseDto issueV1(@RequestBody CouponIssueRequestDto requestDto) {
-		distributeLockExecutor.execute(
-			"lock_" + requestDto.couponId(),
-			10000,
-			10000,
-			() -> couponIssueRequestService.issueRequestV1(requestDto)
-		);
+		couponIssueRequestService.issueRequestV1(requestDto);
 		return new CouponIssueResponseDto(true, null);
 	}
 }

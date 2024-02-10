@@ -21,13 +21,13 @@ public class CouponIssueService {
 
 	@Transactional
 	public void issue(long couponId, long userId) {
-		Coupon coupon = findCoupon(couponId);
+		Coupon coupon = findCouponWithLock(couponId);
 		coupon.issue();
 		saveCouponIssue(couponId, userId);
 	}
 
-	private Coupon findCoupon(long couponId) {
-		return couponJpaRepository.findById(couponId)
+	private Coupon findCouponWithLock(long couponId) {
+		return couponJpaRepository.findCouponWithLock(couponId)
 			.orElseThrow(() -> new CouponIssueException(COUPON_NOT_EXISTS, COUPON_NOT_EXISTS.message + " couponId: %s".formatted(couponId)));
 	}
 

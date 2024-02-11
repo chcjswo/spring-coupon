@@ -15,3 +15,6 @@ tasks.named('test') {
 bootJar {
 	enabled = false
 }
+compileJava {
+	options.compilerArgs.add("-parameters")
+}

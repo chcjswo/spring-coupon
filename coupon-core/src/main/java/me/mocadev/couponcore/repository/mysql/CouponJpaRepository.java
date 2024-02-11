@@ -5,7 +5,7 @@ import jakarta.persistence.LockModeType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.Query;
-import io.lettuce.core.dynamic.annotation.Param;
+import org.springframework.data.repository.query.Param;
 import me.mocadev.couponcore.model.Coupon;
 
 public interface CouponJpaRepository extends JpaRepository<Coupon, Long> {

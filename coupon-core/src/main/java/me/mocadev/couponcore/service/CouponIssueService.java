@@ -26,6 +26,11 @@ public class CouponIssueService {
 		saveCouponIssue(couponId, userId);
 	}
 
+	public Coupon findCoupon(long couponId) {
+		return couponJpaRepository.findById(couponId)
+			.orElseThrow(() -> new CouponIssueException(COUPON_NOT_EXISTS, COUPON_NOT_EXISTS.message + " couponId: %s".formatted(couponId)));
+	}
+
 	private Coupon findCouponWithLock(long couponId) {
 		return couponJpaRepository.findCouponWithLock(couponId)
 			.orElseThrow(() -> new CouponIssueException(COUPON_NOT_EXISTS, COUPON_NOT_EXISTS.message + " couponId: %s".formatted(couponId)));

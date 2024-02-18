@@ -138,4 +138,57 @@ class CouponTest {
 		;
 	}
 
+	@DisplayName("발급 기간이 종료되면 true를 반환한다.")
+	@Test
+	void test_5() {
+		// given
+		Coupon coupon = Coupon.builder()
+			.totalQuantity(100)
+			.issuedQuantity(0)
+			.dateIssueStart(LocalDateTime.now().minusDays(2))
+			.dateIssueEnd(LocalDateTime.now().minusDays(2))
+			.build();
+
+		// when
+		boolean result = coupon.isIssueComplete();
+
+		// then
+		assertThat(result).isTrue();
+	}
+
+	@DisplayName("잔여 발급 가능 수량이 없다면 true를 반환한다.")
+	@Test
+	void test_6() {
+		// given
+		Coupon coupon = Coupon.builder()
+			.totalQuantity(100)
+			.issuedQuantity(100)
+			.dateIssueStart(LocalDateTime.now().minusDays(2))
+			.dateIssueEnd(LocalDateTime.now().plusDays(2))
+			.build();
+
+		// when
+		boolean result = coupon.isIssueComplete();
+
+		// then
+		assertThat(result).isTrue();
+	}
+
+	@DisplayName("발급 기한과 수량이 요효하면 false를 반환한다.")
+	@Test
+	void test_7() {
+		// given
+		Coupon coupon = Coupon.builder()
+			.totalQuantity(100)
+			.issuedQuantity(0)
+			.dateIssueStart(LocalDateTime.now().minusDays(2))
+			.dateIssueEnd(LocalDateTime.now().plusDays(2))
+			.build();
+
+		// when
+		boolean result = coupon.isIssueComplete();
+
+		// then
+		assertThat(result).isFalse();
+	}
 }
